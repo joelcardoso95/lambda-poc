@@ -1,6 +1,9 @@
 package main
 
 import (
+	"context"
+	"github.com/aws/aws-lambda-go/events"
+	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sfn"
@@ -12,6 +15,14 @@ const (
 )
 
 func main() {
+	// Create a new context
+	ctx := context.Background()
+	lambda.StartWithOptions(handler, lambda.WithContext(ctx))
+}
+
+func handler(ctx context.Context, events events.DynamoDBEvent) {
+	log.Println("Received events: ", events)
+
 	// Create a new session
 	sess := session.Must(session.NewSession())
 
