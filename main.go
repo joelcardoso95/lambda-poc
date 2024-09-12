@@ -73,3 +73,25 @@ func handler(ctx context.Context, events events.DynamoDBEvent) {
 		}
 	}
 }
+
+// Example of sending a task success
+//func sendTaskSuccess(sfnClient *sfn.SFN, taskToken string, result *sfn.StartExecutionOutput) {
+//	resultJson, err := json.Marshal(result)
+//	if err != nil {
+//		log.Println("Error marshalling result to JSON: ", err)
+//		panic(err)
+//	}
+//
+//	sendTaskSuccessInput := &sfn.SendTaskSuccessInput{
+//		TaskToken: aws.String(taskToken),
+//		Output:    aws.String(string(resultJson)),
+//	}
+//
+//	_, err = sfnClient.SendTaskSuccess(sendTaskSuccessInput)
+//	if err != nil {
+//		log.Println("Error sending task success: ", err)
+//		panic(err)
+//	}
+//
+//	log.Println("Task Success Sent")
+//}
